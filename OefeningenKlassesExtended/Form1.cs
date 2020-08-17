@@ -22,21 +22,27 @@ namespace OefeningenKlassesExtended
         {
             mijnPretpark.Naam = "Het beste pretpark";
             lblPretparkNaam.Text = mijnPretpark.Naam;
-            foreach (var item in groupBox1.Controls.OfType<Label>)
-            {
+            clearLabels();
 
-            }
         }
 
+        private void clearLabels()
+        {
+            foreach (var item in groupBox1.Controls.OfType<Label>())
+            {
+                item.Text = "";
+            }
+        }
         private void rbAttracties_CheckedChanged(object sender, EventArgs e)
         {
             lbMijnLijst.DataSource = mijnPretpark.AttractieLijst;
+            clearLabels();
         }
 
         private void rbWerknemers_CheckedChanged(object sender, EventArgs e)
         {
             lbMijnLijst.DataSource = mijnPretpark.PersoneelsLijst;
-
+            clearLabels();
         }
 
         private void UpdateLijst()
@@ -116,7 +122,6 @@ namespace OefeningenKlassesExtended
                 lblData1.Text = $"Geboortedatum: {(mijnPretpark.PersoneelsLijst[lbMijnLijst.SelectedIndex].GeboorteDatum).ToString("dd/MM/yyyy")}";
                 lblData1.Text = $"Geslacht: {mijnPretpark.PersoneelsLijst[lbMijnLijst.SelectedIndex].Geslacht }";
                 lblData4.Visible = false;
-
             }
 
         }
