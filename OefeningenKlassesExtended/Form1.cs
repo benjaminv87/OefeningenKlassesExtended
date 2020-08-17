@@ -56,6 +56,7 @@ namespace OefeningenKlassesExtended
             {
                 lbMijnLijst.DataSource = mijnPretpark.PersoneelsLijst;
             }
+            clearLabels();
         }
         private void btnVerwijder_Click(object sender, EventArgs e)
         {
@@ -108,20 +109,25 @@ namespace OefeningenKlassesExtended
 
         private void lbMijnLijst_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (rbAttracties.Checked)
+            int index = lbMijnLijst.SelectedIndex;
+
+            if (index >= 0)
             {
-                lblData1.Text = $"Naam: {mijnPretpark.AttractieLijst[lbMijnLijst.SelectedIndex].Naam}";
-                lblData2.Text = $"Kleur: {mijnPretpark.AttractieLijst[lbMijnLijst.SelectedIndex].Kleur}";
-                lblData3.Text = $"Minimum leeftijd: {mijnPretpark.AttractieLijst[lbMijnLijst.SelectedIndex].MinLeeftijd.ToString()}";
-                lblData4.Visible = true;
-                lblData4.Text = $"Maximum personen: {mijnPretpark.AttractieLijst[lbMijnLijst.SelectedIndex].MaxPersonen.ToString()}";
-            }
-            else if (rbWerknemers.Checked)
-            {
-                lblData1.Text = $"Naam: {mijnPretpark.PersoneelsLijst[lbMijnLijst.SelectedIndex].Naam }";
-                lblData1.Text = $"Geboortedatum: {(mijnPretpark.PersoneelsLijst[lbMijnLijst.SelectedIndex].GeboorteDatum).ToString("dd/MM/yyyy")}";
-                lblData1.Text = $"Geslacht: {mijnPretpark.PersoneelsLijst[lbMijnLijst.SelectedIndex].Geslacht }";
-                lblData4.Visible = false;
+                if (rbAttracties.Checked)
+                {
+                    lblData1.Text = $"Naam: {mijnPretpark.AttractieLijst[index].Naam}";
+                    lblData2.Text = $"Kleur: {mijnPretpark.AttractieLijst[index].Kleur}";
+                    lblData3.Text = $"Minimum leeftijd: {mijnPretpark.AttractieLijst[index].MinLeeftijd.ToString()}";
+                    lblData4.Visible = true;
+                    lblData4.Text = $"Maximum personen: {mijnPretpark.AttractieLijst[index].MaxPersonen.ToString()}";
+                }
+                else if (rbWerknemers.Checked)
+                {
+                    lblData1.Text = $"Naam: {mijnPretpark.PersoneelsLijst[index].Naam }";
+                    lblData2.Text = $"Geboortedatum: {(mijnPretpark.PersoneelsLijst[index].GeboorteDatum).ToString("dd/MM/yyyy")}";
+                    lblData3.Text = $"Geslacht: {mijnPretpark.PersoneelsLijst[index].Geslacht }";
+                    lblData4.Visible = false;
+                }
             }
 
         }
